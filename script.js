@@ -1,3 +1,30 @@
+//Event Listener for Popular Drink Button
+$("#popBtn").on("click", function () {
+
+    //API call for popular drink list
+    const popular = {
+        "async": true,
+	"crossDomain": true,
+	"url": "https://the-cocktail-db.p.rapidapi.com/randomselection.php",
+	"method": "GET",
+	"headers": {
+		"x-rapidapi-key": "617a4f066cmsh0a311780b1b6d9cp1ada08jsna7edb4fc2985",
+		"x-rapidapi-host": "the-cocktail-db.p.rapidapi.com"
+        }
+    };
+
+    $.ajax(popular).done(function (response) {
+        // After the data from the AJAX request comes back
+        var results = response.drinks;
+        console.log(results);
+        let li;
+        for (let i = 0; i < results.length; i++) {
+            console.log(results[i].strDrink);
+            let drinks = results[i].strDrink
+            li = document.createElement('DIV');
+            $("#drinks").prepend(li);
+            $(li).text(drinks);
+            
 //Event Listener for Vodka Button
 $("#vodkaBtn").on("click", function () {
     cleanResults;    
