@@ -24,6 +24,17 @@ $("#popBtn").on("click", function () {
             li = document.createElement('DIV');
             $("#drinks").prepend(li);
             $(li).text(drinks);
+		 // Retrieving the URL for the image
+          var imgURL = results[i].strDrinkThumb;
+          console.log(imgURL);
+          // Creating an element to hold the image
+        // var image = $("<img>").attr("src", imgURL);
+          // Appending the image
+          //$("#drinks").append(image);
+
+        }
+    })
+})
             
 //Event Listener for Vodka Button
 $("#vodkaBtn").on("click", function () {
