@@ -27,3 +27,30 @@ $("#vodkaBtn").on("click", function () {
         }
     })
 })
+//Event Listener for Tequila Button
+$("#tequilaBtn").on("click", function () {
+    cleanResults;
+//API call for Tequila drink list
+const tequilaIng = {
+    "async": true,
+    "crossDomain": true,
+    "url": "https://the-cocktail-db.p.rapidapi.com/filter.php?i=tequila",
+    "method": "GET",
+    "headers": {
+        "x-rapidapi-key": "617a4f066cmsh0a311780b1b6d9cp1ada08jsna7edb4fc2985",
+        "x-rapidapi-host": "the-cocktail-db.p.rapidapi.com"
+    }
+};
+
+$.ajax(tequilaIng).done(function (response) {
+    var tequilaDrinks = response.drinks;
+    console.log(tequilaDrinks);
+    let tequilaList;
+    for (let i = 0; i<30; i++){
+        let tequilaPrint = tequilaDrinks[i].strDrink
+        tequilaList = document.createElement('LI');
+        $("#ingResults").prepend(tequilaList);
+        $(tequilaList).text(tequilaPrint);
+    }
+})
+})
