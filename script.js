@@ -38,7 +38,6 @@ $("#popBtn").on("click", function () {
             
 //Event Listener for Vodka Button
 $("#vodkaBtn").on("click", function () {
-    cleanResults;    
     //API call for vodka drink list
     const vodkaIng = {
         "async": true,
@@ -67,7 +66,6 @@ $("#vodkaBtn").on("click", function () {
 })
 //Event Listener for Tequila Button
 $("#tequilaBtn").on("click", function () {
-    cleanResults;
 //API call for Tequila drink list
 const tequilaIng = {
     "async": true,
@@ -92,3 +90,30 @@ $.ajax(tequilaIng).done(function (response) {
     }
 })
 })
+
+//Event Listener for Rum Button
+$("#rumBtn").on("click", function () {
+    //API call for Rum drink list
+    const rumIng = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://the-cocktail-db.p.rapidapi.com/filter.php?i=rum",
+        "method": "GET",
+        "headers": {
+            "x-rapidapi-key": "617a4f066cmsh0a311780b1b6d9cp1ada08jsna7edb4fc2985",
+            "x-rapidapi-host": "the-cocktail-db.p.rapidapi.com"
+        }
+    };
+    
+    $.ajax(rumIng).done(function (response) {
+        var rumDrinks = response.drinks;
+        console.log(rumDrinks);
+        let rumList;
+        for (let i = 0; i<30; i++){
+            let rumPrint = rumDrinks[i].strDrink
+            rumList = document.createElement('LI');
+            $("#ingResults").prepend(rumList);
+            $(rumList).text(rumPrint);
+        }
+    })
+    })
