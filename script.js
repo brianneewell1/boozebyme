@@ -145,8 +145,8 @@ $("#yelpBtn").on("click", function () {
     let yelpResults;
     for (let i = 0; i < 30; i++) {
         let yelpPrint = yelpBusiness[i].name
-        yelpName = document.createElement('LI');
-        $("#yelpResults").prepend(yelpName);
+        yelpResults = document.createElement('LI');
+        $("#yelpResults").prepend(yelpResults);
         $(yelpResults).text(yelpPrint);
     }
 })})
