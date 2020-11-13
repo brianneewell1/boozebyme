@@ -138,48 +138,15 @@ $("#yelpBtn").on("click", function () {
         }
     };
 
+    //Display Yelp Results
     $.ajax(settings).done(function (response) {
         console.log(response);
-    })
-})
-
-//Display Yelp Results
-
-
-// Tabs
-function openLink(evt, linkName) {
-  var i, x, tablinks;
-  x = document.getElementsByClassName("myLink");
-  for (i = 0; i < x.length; i++) {
-    x[i].style.display = "none";
-  }
-  tablinks = document.getElementsByClassName("tablink");
-  for (i = 0; i < x.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(" w3-blue", "");
-  }
-  document.getElementById(linkName).style.display = "block";
-  evt.currentTarget.className += " w3-blue";
-}
-
-// Click on the first tablink on load
-document.getElementsByClassName("tablink")[0].click();
-
-//User Location
-  var x = document.getElementById("demo");
-  function getLocation() {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(showPosition);
-    } else {
-      x.innerHTML = "Geolocation is not supported by this browser.";
+        var yelpBusiness = response.businesses;
+    let yelpResults;
+    for (let i = 0; i < 30; i++) {
+        let yelpPrint = yelpBusiness[i].name
+        yelpName = document.createElement('LI');
+        $("#yelpResults").prepend(yelpName);
+        $(yelpResults).text(yelpPrint);
     }
-  }
-  
-  function showPosition(position) {
-    x.innerHTML = "Latitude: " + position.coords.latitude +
-    "<br>Longitude: " + position.coords.longitude;
-    var latitude = position.coords.latitude;
-    localStorage.setItem("lat", latitude);
-    var longitude = position.coords.longitude;
-    localStorage.setItem("long", longitude);
-  }
-
+})})
