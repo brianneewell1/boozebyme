@@ -51,10 +51,10 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
 
     <div id="local" class="w3-container w3-white w3-padding-16 myLink">
       <h3>Find a Drink Near You</h3>
+      <button onclick="getLocation()">Allow Access to Location</button>
       <p>Enter Drink Choice</p>
       <input class="w3-input w3-border" type="text" placeholder="mojito" id="searchDrink">
-      <p>Enter your City</p>
-      <input class="w3-input w3-border" type="text" placeholder="Seattle" id="query">
+      <p id="demo"></p>
       <p><button class="w3-button w3-dark-grey" id="yelpBtn">Search</button></p>
     </div>
   </div>
@@ -66,25 +66,6 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
    <!-- End page content -->
 </div>
 
-<script>
-// Tabs
-function openLink(evt, linkName) {
-  var i, x, tablinks;
-  x = document.getElementsByClassName("myLink");
-  for (i = 0; i < x.length; i++) {
-    x[i].style.display = "none";
-  }
-  tablinks = document.getElementsByClassName("tablink");
-  for (i = 0; i < x.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(" w3-blue", "");
-  }
-  document.getElementById(linkName).style.display = "block";
-  evt.currentTarget.className += " w3-blue";
-}
-
-// Click on the first tablink on load
-document.getElementsByClassName("tablink")[0].click();
-</script>
 <script src=script.js></script>
 </body>
 </html>

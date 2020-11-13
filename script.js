@@ -4,12 +4,12 @@ $("#popBtn").on("click", function () {
     //API call for popular drink list
     const popular = {
         "async": true,
-	"crossDomain": true,
-	"url": "https://the-cocktail-db.p.rapidapi.com/randomselection.php",
-	"method": "GET",
-	"headers": {
-		"x-rapidapi-key": "617a4f066cmsh0a311780b1b6d9cp1ada08jsna7edb4fc2985",
-		"x-rapidapi-host": "the-cocktail-db.p.rapidapi.com"
+        "crossDomain": true,
+        "url": "https://the-cocktail-db.p.rapidapi.com/randomselection.php",
+        "method": "GET",
+        "headers": {
+            "x-rapidapi-key": "617a4f066cmsh0a311780b1b6d9cp1ada08jsna7edb4fc2985",
+            "x-rapidapi-host": "the-cocktail-db.p.rapidapi.com"
         }
     };
 
@@ -24,18 +24,18 @@ $("#popBtn").on("click", function () {
             li = document.createElement('DIV');
             $("#drinks").prepend(li);
             $(li).text(drinks);
-		 // Retrieving the URL for the image
-          var imgURL = results[i].strDrinkThumb;
-          console.log(imgURL);
-          // Creating an element to hold the image
-        // var image = $("<img>").attr("src", imgURL);
-          // Appending the image
-          //$("#drinks").append(image);
+            // Retrieving the URL for the image
+            var imgURL = results[i].strDrinkThumb;
+            console.log(imgURL);
+            // Creating an element to hold the image
+            //var image = $("<img>").attr("src", imgURL);
+            // Appending the image
+            //$("#drinks").append(image);
 
         }
     })
 })
-            
+
 //Event Listener for Vodka Button
 $("#vodkaBtn").on("click", function () {
     //API call for vodka drink list
@@ -55,7 +55,7 @@ $("#vodkaBtn").on("click", function () {
         var vodkaDrinks = response.drinks;
         console.log(vodkaDrinks);
         let vodkaList;
-        for (let i = 0; i < 30; i++) {
+        for (let i = 0; i < vodkaDrinks.length; i + 3) {
             let vodkaPrint = vodkaDrinks[i].strDrink
             vodkaList = document.createElement('LI');
             $("#ingResults").prepend(vodkaList);
@@ -66,29 +66,29 @@ $("#vodkaBtn").on("click", function () {
 })
 //Event Listener for Tequila Button
 $("#tequilaBtn").on("click", function () {
-//API call for Tequila drink list
-const tequilaIng = {
-    "async": true,
-    "crossDomain": true,
-    "url": "https://the-cocktail-db.p.rapidapi.com/filter.php?i=tequila",
-    "method": "GET",
-    "headers": {
-        "x-rapidapi-key": "617a4f066cmsh0a311780b1b6d9cp1ada08jsna7edb4fc2985",
-        "x-rapidapi-host": "the-cocktail-db.p.rapidapi.com"
-    }
-};
+    //API call for Tequila drink list
+    const tequilaIng = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://the-cocktail-db.p.rapidapi.com/filter.php?i=tequila",
+        "method": "GET",
+        "headers": {
+            "x-rapidapi-key": "617a4f066cmsh0a311780b1b6d9cp1ada08jsna7edb4fc2985",
+            "x-rapidapi-host": "the-cocktail-db.p.rapidapi.com"
+        }
+    };
 
-$.ajax(tequilaIng).done(function (response) {
-    var tequilaDrinks = response.drinks;
-    console.log(tequilaDrinks);
-    let tequilaList;
-    for (let i = 0; i<30; i++){
-        let tequilaPrint = tequilaDrinks[i].strDrink
-        tequilaList = document.createElement('LI');
-        $("#ingResults").prepend(tequilaList);
-        $(tequilaList).text(tequilaPrint);
-    }
-})
+    $.ajax(tequilaIng).done(function (response) {
+        var tequilaDrinks = response.drinks;
+        console.log(tequilaDrinks);
+        let tequilaList;
+        for (let i = 0; i < 30; i++) {
+            let tequilaPrint = tequilaDrinks[i].strDrink
+            tequilaList = document.createElement('LI');
+            $("#ingResults").prepend(tequilaList);
+            $(tequilaList).text(tequilaPrint);
+        }
+    })
 })
 
 //Event Listener for Rum Button
@@ -104,16 +104,82 @@ $("#rumBtn").on("click", function () {
             "x-rapidapi-host": "the-cocktail-db.p.rapidapi.com"
         }
     };
-    
+
     $.ajax(rumIng).done(function (response) {
         var rumDrinks = response.drinks;
         console.log(rumDrinks);
         let rumList;
-        for (let i = 0; i<30; i++){
+        for (let i = 0; i < 30; i++) {
             let rumPrint = rumDrinks[i].strDrink
             rumList = document.createElement('LI');
             $("#ingResults").prepend(rumList);
             $(rumList).text(rumPrint);
         }
     })
+})
+
+
+//Yelp API search by ingredient
+$("#yelpBtn").on("click", function () {
+    var drinkInput = document.getElementById("searchDrink").value;
+    localStorage.setItem("drinkTerm", drinkInput);
+    const settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search",
+        "method": "GET",
+        "headers": {
+            "authorization": "Bearer OtPHKCuY1jmOsGPUZzwRiTMPh801290sRO3XbX026ZzZ2WD5lrTKhwb5WLX9tk_vsi_HJA_dvlqm8Y8mVfiCsWilSh9jwSykvB1QcsLTFEhmcGqvOSxFrnx8fCarX3Yx",
+        },
+        "data": {
+            "term": localStorage.getItem('drinkTerm'),
+            "latitude": localStorage.getItem('lat'),
+            "longitude": localStorage.getItem('long'),
+        }
+    };
+
+    $.ajax(settings).done(function (response) {
+        console.log(response);
     })
+})
+
+//Display Yelp Results
+
+
+// Tabs
+function openLink(evt, linkName) {
+  var i, x, tablinks;
+  x = document.getElementsByClassName("myLink");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablink");
+  for (i = 0; i < x.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" w3-blue", "");
+  }
+  document.getElementById(linkName).style.display = "block";
+  evt.currentTarget.className += " w3-blue";
+}
+
+// Click on the first tablink on load
+document.getElementsByClassName("tablink")[0].click();
+
+//User Location
+  var x = document.getElementById("demo");
+  function getLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(showPosition);
+    } else {
+      x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+  }
+  
+  function showPosition(position) {
+    x.innerHTML = "Latitude: " + position.coords.latitude +
+    "<br>Longitude: " + position.coords.longitude;
+    var latitude = position.coords.latitude;
+    localStorage.setItem("lat", latitude);
+    var longitude = position.coords.longitude;
+    localStorage.setItem("long", longitude);
+  }
+
