@@ -144,9 +144,16 @@ $("#yelpBtn").on("click", function () {
         var yelpBusiness = response.businesses;
     let yelpResults;
     for (let i = 0; i < 30; i++) {
-        let yelpPrint = yelpBusiness[i].name
-        yelpResults = document.createElement('LI');
-        $("#yelpResults").prepend(yelpResults);
-        $(yelpResults).text(yelpPrint);
+        let yelpName = yelpBusiness[i].name
+        let yelpURL = yelpBusiness[i].url
+        yelpResults = document.createElement('div');
+       yelpResults.id = "yelp"; //Assign div id
+    yelpResults.setAttribute("style", "float:left; width:66.5%; line-height: 26px; text-align:left; font-size:12pt; padding-left:8px; height:26px;"); //Set div attributes
+    yelpResults.style.background =  "gray";
+    a = document.createElement('a');
+    a.href =  yelpURL; // Insted of calling setAttribute 
+    a.innerHTML = yelpName // <a>INNER_TEXT</a>
+    yelpResults.appendChild(a); // Append the link to the div
+    document.body.appendChild(yelpResults); // And append the div to the document body
     }
 })})
