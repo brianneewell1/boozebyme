@@ -24,40 +24,29 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
   <div class="w3-display-middle" style="width:65%">
     <div class="w3-bar w3-black">
       <button class="w3-bar-item w3-button tablink" onclick="openLink(event, 'popular');"><i class="fa fa-glass w3-margin-right"></i>Popular Drinks</button>
-      <button class="w3-bar-item w3-button tablink" onclick="openLink(event, 'ingredient');"><i class="fa fa-list w3-margin-right"></i>Search by Ingredient</button>
-      <button class="w3-bar-item w3-button tablink" onclick="openLink(event, 'local');"><i class="fa fa-map-marker w3-margin-right"></i>Local Bars</button>
+            <button class="w3-bar-item w3-button tablink" onclick="openLink(event, 'local');"><i class="fa fa-map-marker w3-margin-right"></i>Local Bars</button>
     </div>
 
     <!-- Tabs -->
     <div id="popular" class="w3-container w3-white w3-padding-16 myLink">
       <h3>Find the Perfect Drink</h3>
       <p>Not sure what to drink? Here's a list of 10 random cocktails</p>
-      <div class="w3-row-padding" style="margin:0 -16px;">
-       </div>
-        <ul id="drinks">
-          
-        </ul>
+      <div class="w3-row-padding" style="margin:0 -16px;"></div>
+        <div id="drinks"></div>
+        <br>
       <p><button class="w3-button w3-dark-grey" id="popBtn">View Drinks</button></p>
     </div>
 
-    <div id="ingredient" class="w3-container w3-white w3-padding-16 myLink">
-      <h3>Craving a Cocktail?</h3>
-      <p>Select an Ingredient and We'll Show Popular Cocktails</p>
-      <p><button class="w3-button w3-dark-grey" id="vodkaBtn">Vodka</button></p>
-      <p><button class="w3-button w3-dark-grey" id="tequilaBtn">Tequila</button></p>
-      <p><button class="w3-button w3-dark-grey" id="rumBtn">Rum</button></p>
-      <ul id="ingResults"></ul>
-    </div>
-
-    <div id="local" class="w3-container w3-white w3-padding-16 myLink">
+        <div id="local" class="w3-container w3-white w3-padding-16 myLink">
       <h3>Find a Drink Near You</h3>
+      <div id="yelpResults"></div>
       <button onclick="getLocation()">Allow Access to Location</button>
       <p>Enter Drink Choice</p>
       <input class="w3-input w3-border" type="text" placeholder="mojito" id="searchDrink">
       <p id="demo"></p>
       <p><button class="w3-button w3-dark-grey" id="yelpBtn">Search</button></p>
     </div>
-    <div id="yelpResults"></div>
+    
   </div>
 </header>
 
