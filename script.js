@@ -16,10 +16,8 @@ $("#popBtn").on("click", function () {
     $.ajax(popular).done(function (response) {
         // After the data from the AJAX request comes back
         var results = response.drinks;
-        console.log(results);
         let drinkResults;
         for (let i = 0; i < results.length; i++) {
-            console.log(results[i].strDrink);
             let drinkName = results[i].strDrink
             let ingredient1 = results[i].strIngredient1
             let ingredient2 = results[i].strIngredient2
@@ -57,7 +55,6 @@ $("#yelpBtn").on("click", function () {
 
     //Display Yelp Results
     $.ajax(settings).done(function (response) {
-        console.log(response);
         var yelpBusiness = response.businesses;
         let yelpResults;
         for (let i = 0; i < 30; i++) {
