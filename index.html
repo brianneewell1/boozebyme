@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<title>Booze by Me</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
+.myLink {display: none}
+</style>
+<body class="w3-light-grey">
+
+<!-- Navigation Bar -->
+<div class="w3-bar w3-white w3-border-bottom w3-xlarge">
+  <b>Booze by Me</b>
+</div>
+
+<!-- Header -->
+<header class="w3-display-container w3-content w3-hide-small" style="max-width:1500px">
+  <img class="w3-image" src="./drinkpic.jpg" alt="cocktails" width="1500" height="700">
+  <div class="w3-display-middle" style="width:65%">
+    <div class="w3-bar w3-black">
+      <button class="w3-bar-item w3-button tablink" onclick="openLink(event, 'popular');"><i class="fa fa-glass w3-margin-right"></i>Popular Drinks</button>
+            <button class="w3-bar-item w3-button tablink" onclick="openLink(event, 'local');"><i class="fa fa-map-marker w3-margin-right"></i>Local Bars</button>
+    </div>
+
+    <!-- Tabs -->
+    <div id="popular" class="w3-container w3-white w3-padding-16 myLink">
+      <h3>Find the Perfect Drink</h3>
+      <p>Not sure what to drink? Here's a list of 10 random cocktails</p>
+      <div class="w3-row-padding" style="margin:0 -16px;"></div>
+        <div id="drinks"></div>
+        <br>
+      <p><button class="w3-button w3-dark-grey" id="popBtn">View Drinks</button></p>
+    </div>
+
+        <div id="local" class="w3-container w3-white w3-padding-16 myLink">
+      <h3>Find a Drink Near You</h3>
+      <div id="yelpResults"></div>
+      <button onclick="getLocation()">Allow Access to Location</button>
+      <p>Enter Drink Choice</p>
+      <input class="w3-input w3-border" type="text" placeholder="mojito" id="searchDrink">
+      <p id="demo"></p>
+      <p><button class="w3-button w3-dark-grey" id="yelpBtn">Search</button></p>
+    </div>
+    
+  </div>
+</header>
+
+<!-- Page content -->
+<div class="w3-content" style="max-width:1100px;">
+
+   <!-- End page content -->
+</div>
+<script>
+// Tabs
+function openLink(evt, linkName) {
+  var i, x, tablinks;
+  x = document.getElementsByClassName("myLink");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablink");
+  for (i = 0; i < x.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" w3-blue", "");
+  }
+  document.getElementById(linkName).style.display = "block";
+  evt.currentTarget.className += " w3-blue";
+}
+
+// Click on the first tablink on load
+document.getElementsByClassName("tablink")[0].click();
+
+//User Location
+  var x = document.getElementById("demo");
+  function getLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(showPosition);
+    } else {
+      x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+  }
+  
+  function showPosition(position) {
+    x.innerHTML = "Latitude: " + position.coords.latitude +
+    "<br>Longitude: " + position.coords.longitude;
+    var latitude = position.coords.latitude;
+    localStorage.setItem("lat", latitude);
+    var longitude = position.coords.longitude;
+    localStorage.setItem("long", longitude);
+  }
+</script>
+<script src="jquery-3.5.1.min.js"></script>
+<script src=script.js></script>
+</body>
+</html>
