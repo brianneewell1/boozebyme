@@ -1,5 +1,5 @@
 //Event Listener for Popular Drink Button
-$( document ).ready(function() {
+$( document ).on("ready",function() {
 $("#popBtn").on("click", function () {
 
     //API call for popular drink list
